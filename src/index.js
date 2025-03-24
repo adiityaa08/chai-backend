@@ -9,4 +9,12 @@ dotenv.config({
     path:"./env"
 })
 
-connectdb()
+connectdb() // we have used async and await function so it returns a promise so to handle it we use then-catch
+.then(()=>{
+    app.listen(process.env.PORT || 3000,()=>{
+        console.log(`server started at port ${process.env.PORT}`);
+    })
+})
+.catch((error)=>{
+    console.log("Mongodb connection failed")
+})
