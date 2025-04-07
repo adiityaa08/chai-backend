@@ -24,4 +24,4 @@ import userRouter from "./routes/user.routes.js";
 app.use("/api/v1/users",userRouter)    // a middleware it takes the url,router
 
 
-export default app
+export {app}

@@ -1,8 +1,8 @@
-import { Router } from "express";
+import express from "express";
 import { registerUser } from "../controllers/user.controller.js";
 
-const userRouter=Router()
+const userRouter = express.Router(); // ✅ correctly use express.Router()
 
-Router.route("/register").post(registerUser)
+userRouter.route("/register").post(registerUser); // ✅ use the router instance, not the class
 
-export default userRouter
+export default userRouter;
