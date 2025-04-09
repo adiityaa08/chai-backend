@@ -19,7 +19,7 @@ const registerUser=asyncHandler( async(req,res)=>{
     // check for user creation 
     // return res
 
-    const {fullName,email,username,password}=req.body
+    const {fullname,email,username,password}=req.body
     console.log("email:",email);
 
 
@@ -28,13 +28,13 @@ const registerUser=asyncHandler( async(req,res)=>{
     // }  this way we can validate all the fields but we will require if statement for each field
 
     if (
-        [fullName,email,username,password].some((field)=> field?.trim()==="")
+        [fullname,email,username,password].some((field)=> field?.trim()==="")
     ) {
         throw new ApiError(400,"All Fields Are Required")
     }
  
     // check if user already exists or not
-    const existeduser=User.findOne({
+    const existeduser=await User.findOne({
         $or : [{username},{email}]
     })
     if(existeduser)
@@ -44,7 +44,7 @@ const registerUser=asyncHandler( async(req,res)=>{
 
     // checking images and avatar
      const avatarlocalpath=req.files?.avatar[0]?.path;
-     const coverimagelocalpath=req.files?.coverimage[0].path;
+     const coverimagelocalpath=req.files?.coverImage[0].path;
 
      if(!avatarlocalpath)
      {
@@ -62,7 +62,7 @@ const registerUser=asyncHandler( async(req,res)=>{
     }
 
     const user=await User.create({ //create user object - entry in db
-        fullName,
+        fullname,
         avatar:avatar.url,
         coverImage:coverImage?.url || "",
         email,

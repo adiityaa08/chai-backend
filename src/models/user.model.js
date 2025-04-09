@@ -29,7 +29,7 @@ const UserSchema=new mongoose.Schema(
             type:String,  //cloudinary url
             required:true,
         },
-        coverimage:{
+        coverImage:{
             type:String,    
         },
         watchHistory:[
@@ -51,7 +51,7 @@ const UserSchema=new mongoose.Schema(
     }
 )
 
-UserSchema.pre("save",async function(){
+UserSchema.pre("save",async function(next){
     // if(this.isModified("password")){
     //     this.password=bcrypt.hash(this.password,10)
     //     next()
