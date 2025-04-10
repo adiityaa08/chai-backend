@@ -83,7 +83,7 @@ UserSchema.methods.generateAccessToken=function(){
 )
 }
 
-UserSchema.methods.generateRefershToken=function(){
+UserSchema.methods.generateRefreshToken=function(){
     return jwt.sign(
     {
         _id:this._id   //it has less data since it gets refresh time to time
