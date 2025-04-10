@@ -20,7 +20,8 @@ const registerUser=asyncHandler( async(req,res)=>{
     // return res
 
     const {fullname,email,username,password}=req.body
-    console.log("email:",email);
+    console.log("email:",email , "fullname:",fullname ,"username:",username
+    );
 
 
     // if(fullName===""){
@@ -44,7 +45,14 @@ const registerUser=asyncHandler( async(req,res)=>{
 
     // checking images and avatar
      const avatarlocalpath=req.files?.avatar[0]?.path;
-     const coverimagelocalpath=req.files?.coverImage[0].path;
+    //  const coverimagelocalpath=req.files?.coverImage[0].path;
+
+    // checking if cover image is uploaded or not and it not then it must return null
+    let coverimagelocalpath;
+    if(req.files && Array.isArray(req.files.coverImage) && req.files.coverImage.length>0)
+    {
+        coverimagelocalpath=req.files.coverImage[0].path;
+    }
 
      if(!avatarlocalpath)
      {
