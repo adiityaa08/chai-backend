@@ -117,7 +117,7 @@ const registerUser=asyncHandler( async(req,res)=>{
       // send cookie
 
       const {email,username,password}=req.body
-      if(!username || !email)
+      if(!username && !email)
       {
         throw new ApiError(400,"username or email required")
       }
